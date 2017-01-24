@@ -46,12 +46,12 @@
 
         .navbar-nav > li {
             /* Set the font size of the *top* menu items */
-            font-family: verdana;
+            font-family:  'Verdana', serif;
             font-size: 18px;
         }
         .dropdown-menu {
             /* Set the font size of the *inner* menu items */
-            font-family: verdana;
+            font-family: 'Verdana', serif;
             font-size: 18px;
         }
 
