@@ -124,24 +124,25 @@
                             <%-- F B I     M E N U --%>
                             <li class="dropdown">
                                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="glyphicon glyphicon-certificate"></span>FBI<b class="caret"></b></a>
+                                    <span class="glyphicon glyphicon-certificate"></span> FBI<b class="caret"></b></a>
                                     <ul role="menu" class="dropdown-menu">
                                         <li><a href="#">All Reports</a></li>
+                                        <li><a href="#">My Reports</a></li>
+                                        <li><a href="#">Upload Report</a></li>
                                         <li><a href="#">All Indicators</a></li>
                                         <li><a href="#">Search</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Administration</a></li>
                                     </ul>
                             </li>
 
                             <%-- N E T O P S       M E N U --%>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="glyphicon glyphicon-book"></span>NetOps<b class="caret"></b></a>
+                                    <span class="glyphicon glyphicon-book"></span> NetOps<b class="caret"></b></a>
                                     <ul role="menu" class="dropdown-menu">
-                                        <li><a href="#">Training</a></li>
-                                        <li><a href="#">Placement</a></li>
+                                        <li><a href="#">Ticketing</a></li>
+                                        <li><a href="#">Metrics</a></li>
                                         <li class="divider"></li>
                                         <li><a href="#">FAQ's</a></li>
                                         <li><a href="#">Write Us</a></li>
@@ -151,7 +152,7 @@
                             <%-- D A T A     M E N U    --%>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="glyphicon glyphicon-book"></span>Data<b class="caret"></b></a>
+                                    <span class="glyphicon glyphicon-book"></span> Data<b class="caret"></b></a>
                                 <ul role="menu" class="dropdown-menu">
                                     <li><a href="#">Training</a></li>
                                     <li><a href="#">Placement</a></li>
