@@ -1,0 +1,47 @@
+Lesson:  Debug your Web Application using IntelliJ
+--------------------------------------------------
+In this example, we will debug the webapp using the Maven Jetty Plugin
+
+
+Assumptions:
+ A) You have created a Web Application
+ B) You have purchased and installed IntelliJ Ultimate or IntelliJ Community Edition
+ C) Your project is located here:  c:\tools\intellij\workspace\ui\
+
+
+Procedure
+---------
+ 1. Use IntelliJ to set a breakpoint
+    a. Startup Intellij
+    b. Set a breakpoint
+       -- Browse to src/main/java -> app1.controllers -> WelcomeController.java
+       -- Single-click in the left margin and add a breakpoint on this line
+             logger.debug("mainPage() started");
+
+
+
+ 2. Tell Intellij to use Maven Jetty Plugin in debug mode
+    a. Open the Maven Projects window
+       Pull View -> Tool Window -> Maven Project
+
+    b. Single-click on Plugins -> jetty -> jetty:run
+
+    c. Right-click on jetty:run -> Debug....
+       -- This will activate the jetty maven plugin in debug mode
+          *AND*
+       -- This will create a menu option :
+          Run -> Debug '<your webapp's name>' [jetty:run]'
+
+
+
+ 3. Open a browser and connect to your web app
+    a. Startup Firefox
+    b. Connect to http://localhost:8080/ui/
+
+
+ 4. Stop the debugger
+    In Intellij, Pull Run / Stop '<your webapp's name>' [jetty:run]'
+
+
+
+
