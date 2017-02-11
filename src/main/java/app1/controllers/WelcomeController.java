@@ -25,7 +25,7 @@ public class WelcomeController
     public ModelAndView handleDefaultPage( Model aModel )
     {
         // By default, forward users to the /welcome page
-        return new ModelAndView("forward:/welcome");
+        return new ModelAndView("forward:/angularPage1");
     }
 
 
@@ -70,4 +70,29 @@ public class WelcomeController
         logger.debug("showPage() finished");
         return mav;
     }
+
+
+    /**********************************************************************
+     * showAngularPage1()
+     ***********************************************************************/
+    @RequestMapping("/angularPage1")
+    public ModelAndView showAngularPage1( Model aModel )
+    {
+        logger.debug("showAngularPage1() started");
+
+        // Create a modelAndView object
+        ModelAndView mav = new ModelAndView("angularPage1.jsp");
+
+//        // Create a userInfo object
+//        UserInfo userInfo = new UserInfo();
+//        userInfo.setUserName("Adam");
+//        userInfo.setIsAdministrator(true);
+
+        // Add the userInfo information to the view
+     //   mav.addObject("userInfo", userInfo);
+
+        logger.debug("showAngularPage1() finished");
+        return mav;
+    }
+
 }
