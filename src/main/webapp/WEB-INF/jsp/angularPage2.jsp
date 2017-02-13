@@ -48,7 +48,11 @@
     <br/>
     <br/>
 
-    <select id="myDropdown" style="width: 300px" select2 initialization-json="{allowClear:false}"  ng-show="ctrl.showPopop" >
+    <select id="myDropdown" style="width: 300px" select2
+            callback="ctrl.selectAndClose(arg1)"
+            initialization-json="{allowClear:false, placeholder:'-Select Field-'}"
+            ng-show="ctrl.showPopup" >
+
         <%-- Fill-in the dropdown the values found in ctrl.searchFields --%>
         <option ng-repeat="option in ctrl.searchFields" value="{{option.fieldName}}">{{option.displayName}}</option>
 
@@ -67,25 +71,11 @@
 <script src="${contextPath}/resources/jquery/jquery-1.11.3.min.js"></script>
 
 <%-- Load Angular --%>
-<script src="${contextPath}/resources/angular-1.6.2/angular.min.js" type="text/javascript"></script>
+<script src="${contextPath}/resources/angular-1.6.2/angular.js" type="text/javascript"></script>
 
 <%-- Load select2 JS --%>
 <script src="${contextPath}/resources/select2-3.5.4/select2.min.js"></script>
 
-<script type="text/javascript">
-
-    $( document ).ready(function()
-    {
-        // Load when the page has finished loading
-
-        // Initialize the select2 dropdown
-        var myDropdown = $('#myDropdown');
-        myDropdown.select2( {
-        });
-
-        placeholder:  "-Select Field-"
-    });
-</script>
 
 <script type="text/javascript">
     var myApp = angular.module('myApp', []);
@@ -96,7 +86,7 @@
 
         self.searchBoxRawQuery = "";
 
-        self.showPopop=false;
+        self.showPopup=false;
 
         self.searchFields = [
             {
@@ -134,7 +124,16 @@
 
         self.userPressedShiftShift = function()
         {
-            self.showPopop = true;
+            self.showPopup = true;
+        }
+
+        self.selectAndClose = function(aSelectedValue)
+        {
+            var newValue = self.searchBoxRawQuery + aSelectedValue + ':';
+            console.log('BEFORE:  searchBoxRawQuery-->' + self.searchBoxRawQuery + '<--   newValue-->' + newValue + '<--');
+            self.searchBoxRawQuery = newValue;
+            console.log('AFTER :  searchBoxRawQuery-->' + self.searchBoxRawQuery + '<--   newValue-->' + newValue + '<--');
+            self.showPopup = false;
         }
     });
 
@@ -144,7 +143,8 @@
             restrict: 'A',
             scope:
             {
-                initializationJson: '=initializationJson'
+                initializationJson: '=',
+                callback: '&'
             },
             link: function(scope, element, attrs)
             {
@@ -159,12 +159,12 @@
                     // The user is about to select something.  e.val holds the value
                     if (e.val != '')
                     {
-                        console.log('the user just selected: ' + e.val);
-
-                        console.log('Current searchBoxRawQuery=' + $scope.searchBoxRawQuery);
-//                        // Clear out the value in 2nd select2
-//                        $scope.searchBoxRawQuery = $scope.searchBoxRawQuery + ' ' + e.val + ':';
-//                        $scope.showPopup = false;
+                        // User selected a value
+                        scope.$apply(function()
+                        {
+                            // Call the callback method and pass-in the selected value as arg1
+                            scope.callback({arg1: e.val});
+                        });
                     }
                 });
             }
@@ -217,18 +217,26 @@
                         }
                         else
                         {
+                            // Last shift was within 1 second of the current shift -- so it applies
+                            // User Pressed "Shift" and the last code was "Shift" -- so execute the function
+
+                            console.log('Shift Shift Detected!!');
+
                             iLastEventWhich = 0;
                             iSecondsOfLastShift = 0;
 
-                            // Last shift was within 1 second of the current shift -- so it applies
-                            // User Pressed "Shift" and the last code was "Shift" -- so execute the function
-                            console.log('user pressed shift shift!!');
                             scope.$apply(function ()
                             {
-                                scope.$eval(attrs.onShiftshift);
-                            });
-                            event.preventDefault();
+                                // Send the trigger event to open it
+                                element.siblings('select').select2('open');
 
+                                // Run the code associated with the onShiftshift=...
+                                scope.$eval(attrs.onShiftshift);
+
+
+                            });
+
+                            event.preventDefault();
                         }
                     }
                     else
