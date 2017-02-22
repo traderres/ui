@@ -25,7 +25,7 @@ public class WelcomeController
     public ModelAndView handleDefaultPage( Model aModel )
     {
         // By default, forward users to the /welcome page
-        return new ModelAndView("forward:/angularPage3");
+        return new ModelAndView("forward:/welcome");
     }
 
 

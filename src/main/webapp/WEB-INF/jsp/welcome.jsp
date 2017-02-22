@@ -22,6 +22,8 @@
 <a href="${contextPath}/show/page3">Page 3</a><br/>
 <a href="${contextPath}/show/page4">Page 4</a>  Removed "Home", Click brand to get home, used verdana for menus<br/>
 
+<a href="${contextPath}/show/menu1">menu 1</a>
+
 <br/>
 <br/>
 
