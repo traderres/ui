@@ -25,7 +25,7 @@ public class WelcomeController
     public ModelAndView handleDefaultPage( Model aModel )
     {
         // By default, forward users to the /welcome page
-        return new ModelAndView("forward:/angularPage2");
+        return new ModelAndView("forward:/angularPage3");
     }
 
 
@@ -88,7 +88,7 @@ public class WelcomeController
     }
 
     /**********************************************************************
-     * showAngularPage1()
+     * showAngularPage2()
      ***********************************************************************/
     @RequestMapping("/angularPage2")
     public ModelAndView showAngularPage2( Model aModel )
@@ -99,6 +99,22 @@ public class WelcomeController
         ModelAndView mav = new ModelAndView("angularPage2.jsp");
 
         logger.debug("showAngularPage2() finished");
+        return mav;
+    }
+
+
+    /**********************************************************************
+     * showAngularPage3()
+     ***********************************************************************/
+    @RequestMapping("/angularPage3")
+    public ModelAndView showAngularPage3( Model aModel )
+    {
+        logger.debug("showAngularPage3() started");
+
+        // Create a modelAndView object
+        ModelAndView mav = new ModelAndView("angularPage3.jsp");
+
+        logger.debug("showAngularPage3() finished");
         return mav;
     }
 }
